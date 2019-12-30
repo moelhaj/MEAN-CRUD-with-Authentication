@@ -1,0 +1,35 @@
+<div [class.loader]="loading"></div>
+
+<div class="login-wrapper">
+    <mat-card class="login">
+        <div class="login-info">
+            <h3>Admin Privileges</h3>
+            <ul>
+                <li>Email: samantha.smith@tracker.com</li>
+                <li>Password: Abc123.</li>
+            </ul>
+            <h3>Developer Privileges</h3>
+            <ul>
+                <li>Email: john.doe@tracker.com</li>
+                <li>Password: Abc123.</li>
+            </ul>
+        </div>
+
+        <div *ngIf="error" class="login-error">{{errorMessage}}</div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" ngNativeValidate>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input name="email" type="email" matInput formControlName="email" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" required>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit">login</button>
+        </form>
+    </mat-card>
+</div>

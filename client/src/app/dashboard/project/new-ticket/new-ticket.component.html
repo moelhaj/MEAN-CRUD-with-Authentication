@@ -1,0 +1,47 @@
+<div [class.loader]="loading"></div>
+
+<button class="mt-20 mb-20" mat-raised-button routerLink="/dashboard/details/{{id}}">Back</button>
+
+<mat-divider></mat-divider>
+
+<form [formGroup]="ticketForm" (ngSubmit)="create(ticketForm.value)" class="mt-40">
+
+    <input type="hidden" formControlName="project" [ngModel]="id">
+
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select matNativeControl formControlName="status" required>
+            <mat-option value="Open">Open</mat-option>
+            <mat-option value="Pending">Pending</mat-option>
+            <mat-option value="Closed">Closed</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Severity</mat-label>
+        <mat-select matNativeControl formControlName="severity" required>
+            <mat-option value="High">High</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="Low">Low</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Assign to</mat-label>
+        <mat-select matNativeControl formControlName="user" required>
+            <mat-option *ngFor="let user of users" value="{{user._id}}">{{user.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mat-form-field-full">
+        <mat-label>Details</mat-label>
+        <textarea matInput formControlName="details" required></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="!ticketForm.valid">Create</button>
+</form>

@@ -1,0 +1,55 @@
+<div [class.loader]="loading"></div>
+
+<button class="mt-20 mb-20" mat-raised-button routerLink="/dashboard">Back</button>
+
+<mat-divider></mat-divider>
+
+<div class="details" *ngIf="project" class="mt-40">
+    <h1>{{project.title}}</h1>
+    <h3>{{project.status}}</h3>
+    <p>{{project.details}}</p>
+</div>
+
+
+<div class="controls" *ngIf="noTickets" style="text-align: center;">
+    <h3>Project has no tickets</h3>
+</div>
+
+<mat-toolbar class="controls">
+    <h1>Tickets</h1>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a *ngIf="project" mat-menu-item routerLink="/dashboard/ticket/new/{{project._id}}">
+            <mat-icon>create</mat-icon>
+            <span>New Ticket</span>
+        </a>
+    </mat-menu>
+</mat-toolbar>
+
+<div *ngIf="!noTickets" class="mt-40">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let ticket of tickets">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ticket.title}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{ticket.status}}
+                </mat-panel-description>
+                <mat-panel-description>
+                    {{ticket.severity}}
+                    <span [class.ticket-pulse]="ticket.severity == 'High'"></span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p>Assigend to: {{ticket.user.name}}</p>
+            <p>{{ticket.details}}</p>
+            <mat-action-row>
+                <button mat-raised-button (click)="finish(project._id, ticket._id)">Finish</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
