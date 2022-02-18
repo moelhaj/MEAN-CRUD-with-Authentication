@@ -3,10 +3,14 @@ Bug Tracker using MEAN, implementing Authentication and Authorization
   
 ## Screenshot
 
+
+## Projects view
 ![App Screenshot](https://github.com/moElhaj/MEAN-CRUD-with-Authentication/blob/master/readme/projects.JPG)
 
+## Project Details
 ![App Screenshot](https://github.com/moElhaj/MEAN-CRUD-with-Authentication/blob/master/readme/project.JPG)
 
+## New Ticket
 ![App Screenshot](https://github.com/moElhaj/MEAN-CRUD-with-Authentication/blob/master/readme/newTicket.JPG)
 
   
